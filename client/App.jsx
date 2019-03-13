@@ -1,9 +1,8 @@
 import React from 'react'
 
-export default React.createClass({
+const Index = () => {
+  return <div>Hello React! this is app1224444444555</div>;
+};
 
-  render() {
-    return 'this is a app'
-  }
-});
+export default  Index;
 
