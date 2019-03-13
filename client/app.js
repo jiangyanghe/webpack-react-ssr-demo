@@ -6,6 +6,7 @@ ReactDOM.hydrate(<App />, document.getElementById('root'))// react 16之后使�
 
 if (module.hot) {
   module.hot.accept('./App.jsx', () => {
+    // eslint-disable-next-line global-require
     const NextApp = require('./App.jsx').default;
     ReactDOM.hydrate(<NextApp />, document.getElementById('root'))
   })
