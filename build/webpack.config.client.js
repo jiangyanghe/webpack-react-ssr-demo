@@ -1,29 +1,17 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const webpackBase = require('./webpack.config.base')
 
 const isDev = process.env.NODE_ENV === 'development'
 
-const config = {
+const config = webpackMerge(webpackBase, {
   entry: {
     app: path.join(__dirname, '../client/app.js')
   },
   output: {
-    filename: '[name].[hash].js',
-    path: path.join(__dirname, '../dist'),
-    publicPath: '/public/'//指定静态资源文件，区分文件前缀，cdn缓存
-  },
-  module: {
-    rules: [{
-      enforce: 'pre',
-      test: /.(js|jsx)$/,
-      loader: 'eslint-loader',
-      exclude: /node_modules/,
-    },{
-      test: /.jsx|.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }]
+    filename: '[name].[hash].js'
   },
   plugins: [
     new HtmlWebPackPlugin({
@@ -35,7 +23,7 @@ const config = {
       'react-dom': '@hot-loader/react-dom'
     }
   }
-}
+})
 
 if (isDev) {
   config.entry = {
@@ -47,8 +35,8 @@ if (isDev) {
   config.devServer = {
     host: '0.0.0.0',
     port: '8888',
-    contentBase: path.join(__dirname, '../dist'),//服务启动地址
-    hot: true, //热更新
+    contentBase: path.join(__dirname, '../dist'), // 服务启动地址
+    hot: true, // 热更新
     overlay: {// 页面mask
       errors: true
     },
