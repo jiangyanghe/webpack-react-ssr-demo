@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Routes from '../config/router'
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +26,11 @@ class App extends React.Component {
           add
           {count}
         </button>
+        <br />
+        <Link to="/">首页</Link>
+        <br />
+        <Link to="/detail">详情</Link>
+        <Routes />
       </div>
     )
   }

@@ -5,6 +5,9 @@ module.exports = {
     path: path.join(__dirname, '../dist'),
     publicPath: '/public/'// 指定静态资源文件，区分文件前缀，cdn缓存
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [{
       enforce: 'pre',
